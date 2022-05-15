@@ -1,0 +1,66 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="cab_firms.form_commande">
+      <field name="name">Bon Commande</field>
+      <field name="model">cabfirms.commande</field>
+      <field name="arch" type="xml">
+        <form string="Course Form">
+          <header>
+              <button name="delevery" class="btn btn-primary" type="object" string="Create Delevery" rtl="right"></button>
+              <button name="delevery" type="object" string="Update"></button>
+            </header>
+           <sheet>
+             <group>
+               <field name="name"/>
+               <field name="code_bar"/>
+               <field name="fournisseur"/>
+               <field name="date"/>
+               <field name="prix_unit"/>
+               <field name="prix_total"/>
+               <field name="description"/>
+
+             </group>
+            <notebook>
+              <page string="Commande info">
+                <field name="quantite">
+                  <tree>
+                    <field name="quantite_total"/>
+                    <field name="quantite_utilise"/>
+                    <field name="produit"/>
+                 </tree>
+               </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="cab_firms.action_window_commande">
+      <field name="name">Commande</field>
+      <field name="res_model">cabfirms.commande</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- menu categories -->
+
+    <menuitem name="Bon Commande" id="cab_firms.commande" parent="cab_firms.menu_root"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Commande" id="cab_firms.menu_commande" parent="cab_firms.commande"
+              action="cab_firms.action_window_commande"/>
+
+
+
+  </data>
+</odoo>

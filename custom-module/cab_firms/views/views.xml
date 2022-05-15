@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="cab_firms_form">
+      <field name="name">cab_firms form</field>
+      <field name="model">cabfirms.cabfirms</field>
+      <field name="arch" type="xml">
+         <form string="CabFirms Form">
+           <sheet>
+             <group>
+               <field name="name"/>
+               <field name="responsible_id"/>
+               <field name="date_debut"/>
+               <field name="date_fin"/>
+               <field name="description"/>
+             </group>
+             <notebook>
+               <page string="Materieux Firm">
+                 <field name="materieux">
+                   <tree>
+                     <field name="mat_id"/>
+                     <field name="date"/>
+                     <field name="name"/>
+                     <field name="fournisseur"/>
+                   </tree>
+                 </field>
+               </page>
+               <page string="Produit Line">
+                 <field name="produits">
+                   <tree>
+                     <field name="produit_id"/>
+                     <field name="date"/>
+                     <field name="Matericule"/>
+                     <field name="chouffeur"/>
+                   </tree>
+                 </field>
+               </page>
+               <page string="Piece de rechange">
+                 <field name="pieces">
+                   <tree>
+                     <field name="piece_id"/>
+                     <field name="date"/>
+                     <field name="piece"/>
+                     <field name="fournisseur"/>
+                   </tree>
+                 </field>
+               </page>
+               <page string="Gazoil">
+                 <field name="gazoils">
+                   <tree>
+                     <field name="gazoil_id"/>
+                     <field name="date"/>
+                     <field name="gazoil"/>
+                     <field name="litter"/>
+                   </tree>
+                 </field>
+               </page>
+               <page string="Commande line">
+                 <field name="commands">
+                   <tree>
+                     <field name="name"/>
+                     <field name="date"/>
+                   </tree>
+                 </field>
+               </page>
+             </notebook>
+           </sheet>
+         </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="cab_firms.action_window">
+      <field name="name">cabfirms</field>
+      <field name="res_model">cabfirms.cabfirms</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="cab_firms.action_server">
+      <field name="name">Produits</field>
+      <field name="model_id" ref="model_produit_order"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="CabFirms" id="cab_firms.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Carriere" id="cab_firms.menu_1" parent="cab_firms.menu_root"/>
+    <menuitem name="Configuration" id="cab_firms.menu_2" parent="cab_firms.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Carrieres" id="cab_firms.menu_1_list" parent="cab_firms.menu_1"
+              action="cab_firms.action_window"/>
+    <menuitem name="Produits" id="cab_firms" parent="cab_firms.menu_2"
+              action="cab_firms.action_server"/>
+
+
+
+  </data>
+</odoo>

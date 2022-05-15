@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cabfirms_cabfirms,cabfirms_cabfirms,model_cabfirms_cabfirms,base.group_user,1,1,1,1
+access_materieux,materieux,model_materieux_materieux,base.group_user,1,1,1,1
+access_produit,produit,model_produit_order,base.group_user,1,1,1,1
+access_piece,piece,model_piece_rechange,base.group_user,1,1,1,1
+access_gazoil,gazoil,model_gazoil_litter,base.group_user,1,1,1,1
+access_commande,commande,model_cabfirms_commande,base.group_user,1,1,1,1
+access_livraison,livraison,model_cabfirms_livraison,base.group_user,1,1,1,1
+
